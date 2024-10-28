@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Documents</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-5 flex flex-col gap-10 items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-3xl font-semibold text-gray-500">
+        All Uploaded Documents
+      </h1>
+      <a
+        href="/"
+        class="capitalize cursor-pointer text-blue-500 underline text-xl"
+        >create</a
+      >
+    </div>
+
+    <div
+      class="w-full grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4 items-start"
+    >
+      <% data.reverse().forEach(doc => { %>
+      <div class="border border-gray-300 overflow-hidden rounded-md shadow-xl">
+        <img src="<%= doc.coverImage %>" alt="coverImage" class="w-full" />
+
+        <div class="flex items-center gap-4 m-2">
+          <div
+            class="w-[50px] h-[50px] rounded-full overflow-hidden bg-gray-200 flex items-center justify-center border border-gray-500"
+          >
+            <img
+              src="<%= doc.avatar %>"
+              alt="Avatar"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold"><%= doc.fullName %></h2>
+            <h2 class="text-sm text-gray-500 font-semibold">
+              <%= doc.email %>
+            </h2>
+            <h2 class="text-sm text-gray-500 font-semibold">
+              <%= doc.phone %>
+            </h2>
+          </div>
+        </div>
+        <div class="flex gap-2 items-center justify-center my-6 mx-4">
+          <a
+            href="/delete/<%= doc._id %>"
+            class="font-semibold text-white w-full mx-auto bg-red-500 text-center py-3 rounded-lg"
+            >Delete</a
+          >
+          <a
+            href="/update/<%= doc._id %>"
+            class="font-semibold text-white w-full mx-auto bg-yellow-700 text-center py-3 rounded-lg"
+            >Edit</a
+          >
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
